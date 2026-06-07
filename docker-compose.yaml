@@ -1,0 +1,32 @@
+services:
+  bannerService:
+    image: banner-serve
+    ports:
+      - "80:8080"
+    restart: always
+    volumes:
+      - bannerVolume:/banners
+
+  bannerRandom:
+    image: banner-random
+    ports:
+      - "2000:2000"
+    restart: always
+    environment:
+      - PORT=2000
+      - FOLDER_NAME=/banners
+    volumes:
+      - bannerVolume:/banners
+
+  svelteway:
+    image: svelteway:latest
+    environment:
+      - STEAM_API_KEY=
+
+volumes:
+  bannerVolume:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: 'C:\\Users\\Admin\\Pictures\\assets\\frame'
