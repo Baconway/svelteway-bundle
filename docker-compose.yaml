@@ -2,33 +2,32 @@ services:
   banner-service:
     image: banner-service
     ports:
-      - "80:8080"
+      - "80:80"
     restart: always
     volumes:
-      - C:\\Users\\Admin\\Pictures\\assets\\frame:/banners
-    logging:
-      driver: none
+      - /root/site/frame:/banners
+      - /root/site/plate:/plates
 
-  bannerRandom:
+  banner-random:
     image: banner-random
-    ports:
-      - "2020:2020"
+
     restart: always
     environment:
       - PORT=2020
       - FOLDER_NAME=/banners
     volumes:
-      - C:\\Users\\Admin\\Pictures\\assets\\frame:/banners
+      - /root/site/frame:/banners
 
+  collection-showcase:
+    image: collection-showcase
+    environment:
+      - FRAME_PATH=/_banners
+      - PLATE_PATH=/_plates
+    volumes:
+      - /root/site/frame:/_banners
+      - /root/site/plate:/_plates
   svelteway:
     image: svelteway:latest
     restart: always
     environment:
-      - STEAM_API_KEY=926AE294A24515D3AAD3C577952B8044
-
-  copyparty:
-    image: copyparty/ac
-    restart: always
-    volumes:
-      - /root/site:/w
-      - /root/copyparty:/cfg
+      - STEAM_API_KEY=
