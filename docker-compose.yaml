@@ -8,7 +8,6 @@ services:
     volumes:
       - /root/site/frame:/banners
       - /root/site/plate:/plates
-
   banner-random:
     container_name: banner-random
     image: banner-random
@@ -19,7 +18,6 @@ services:
       - FOLDER_NAME=/banners
     volumes:
       - /root/site/frame:/banners
-
   collection-showcase:
     container_name: collection-showcase
     image: collection-showcase
@@ -35,3 +33,12 @@ services:
     restart: always
     environment:
       - STEAM_API_KEY=
+  copyparty:
+    container_name: copyparty
+    image: copyparty/ac
+    ports:
+      - "3923:3923"
+    restart: always
+    volumes:
+      - /root/site:/w
+      - /root/copyparty:/cfg
