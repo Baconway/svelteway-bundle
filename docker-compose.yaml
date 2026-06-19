@@ -1,6 +1,7 @@
 services:
   banner-service:
-    image: banner-service
+    container_name: banner-service
+    build: ../banner-service
     ports:
       - "80:80"
     restart: always
@@ -9,6 +10,7 @@ services:
       - /root/site/plate:/plates
 
   banner-random:
+    container_name: banner-random
     image: banner-random
 
     restart: always
@@ -19,6 +21,7 @@ services:
       - /root/site/frame:/banners
 
   collection-showcase:
+    container_name: collection-showcase
     image: collection-showcase
     environment:
       - FRAME_PATH=/_banners
@@ -27,6 +30,7 @@ services:
       - /root/site/frame:/_banners
       - /root/site/plate:/_plates
   svelteway:
+    container_name: svelteway
     image: svelteway:latest
     restart: always
     environment:
