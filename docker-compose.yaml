@@ -30,11 +30,11 @@ services:
     container_name: svelteway-collection-showcase
     image: svelteway-collection-showcase:latest
     environment:
-      - HOST = svelteway-db
-      - DB_USER = Baconway
-      - PORT = 5432
-      - DB = sveltewayDB
-      - PASSWORD = bwaydatabase
+      - HOST=svelteway-db
+      - DB_USER=Baconway
+      - PORT=5432
+      - DB=sveltewayDB
+      - PASSWORD=bwaydatabase
 
   svelteway:
     container_name: svelteway
