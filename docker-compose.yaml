@@ -9,6 +9,12 @@ services:
       - /root/site/sdez:/sdez
       - /root/site/sdga:/sdga
 
+  svelteway-db:
+    container_name: collection_db
+    image: postgres:18-alpine
+    volumes:
+      - /root/site/svelteway-db/postgres:/var/lib/postgresql
+
   banner-random:
     container_name: banner-random
     build: /root/site/banner-random
@@ -18,6 +24,17 @@ services:
       - FOLDER_NAME=/banners
     volumes:
       - /root/site/sdga/frame:/banners
+
+  svelteway-collection-showcase:
+    profiles: ["debug", "testing"]
+    container_name: svelteway-collection-showcase
+    image: svelteway-collection-showcase:latest
+    environment:
+      - HOST = svelteway-db
+      - DB_USER = Baconway
+      - PORT = 5432
+      - DB = sveltewayDB
+      - PASSWORD = bwaydatabase
 
   svelteway:
     container_name: svelteway
