@@ -1,38 +1,31 @@
 services:
-  banner-service:
-    container_name: banner-service
-    build: ../banner-service
+  svelteway-nginx:
+    container_name: svelteway-nginx
+    image: ghcr.io/baconway/svelteway-nginx:latest
     ports:
       - "80:80"
     restart: always
     volumes:
-      - /root/site/frame:/banners
-      - /root/site/plate:/plates
+      - /root/site/sdez:/sdez
+      - /root/site/sdga:/sdga
+
   banner-random:
     container_name: banner-random
-    image: banner-random
-
+    build: /root/site/banner-random
     restart: always
     environment:
       - PORT=2020
       - FOLDER_NAME=/banners
     volumes:
-      - /root/site/frame:/banners
-  collection-showcase:
-    container_name: collection-showcase
-    image: collection-showcase
-    environment:
-      - FRAME_PATH=/_banners
-      - PLATE_PATH=/_plates
-    volumes:
-      - /root/site/frame:/_banners
-      - /root/site/plate:/_plates
+      - /root/site/sdga/frame:/banners
+
   svelteway:
     container_name: svelteway
-    image: svelteway:latest
+    image: ghcr.io/baconway/svelteway:latest
     restart: always
     environment:
       - STEAM_API_KEY=
+
   copyparty:
     container_name: copyparty
     image: copyparty/ac
