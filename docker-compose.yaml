@@ -27,7 +27,7 @@ services:
       - PORT=2020
       - FOLDER_NAME=/banners
     volumes:
-      - /root/site/sdga/frame:/banners
+      - /root/site/sdez/frame:/banners
 
   svelteway-collection-showcase:
     profiles: ["debug", "testing"]
