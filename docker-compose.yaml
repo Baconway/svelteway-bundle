@@ -19,9 +19,9 @@ services:
     volumes:
       - /root/site/svelteway-db/postgres:/var/lib/postgresql
 
-  banner-random:
-    container_name: banner-random
-    build: /root/site/banner-random
+  svelteway-backend:
+    container_name: svelteway-backend
+    image: ghcr.io/baconway/svelteway-backend:latest
     restart: always
     environment:
       - PORT=2020
