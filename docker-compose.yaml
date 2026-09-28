@@ -10,8 +10,12 @@ services:
       - /root/site/sdga:/sdga
 
   svelteway-db:
-    container_name: collection_db
+    container_name: svelteway-db
     image: postgres:18-alpine
+    environment:
+      - POSTGRES_USER=Baconway
+      - POSTGRES_DB=sveltewayDB
+      - POSTGRES_PASSWORD=bwaydatabase
     volumes:
       - /root/site/svelteway-db/postgres:/var/lib/postgresql
 
